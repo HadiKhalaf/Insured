@@ -1,0 +1,180 @@
+<section style="background-color: blue;">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100 ">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <form (ngSubmit)="OnSubmit()" #Form="ngForm">
+                
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-outline">
+                      <label class="form-label">Card Number</label>
+                      <select class="select form-control-lg" name="cNumber" (change)="c()" ngModel required #cn="ngModel">
+                         <option *ngFor="let m of me" value="{{m.cardNumber}}">{{m.cardNumber}}</option>
+                       </select>
+                       <div>
+                        <small *ngIf="cn.invalid && cn.touched">Card name is required</small>
+                      </div>
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-outline">
+                      <label class="form-label">Insured Name</label>
+                      <input type="text" class="form-control form-control-lg" id="iName" name="iName" ngModel required #nome="ngModel" disabled/>
+                      <div>
+                        <small *ngIf="nome.invalid && nome.touched">Insured name is required</small>
+                      </div>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4 d-flex align-items-center">
+  
+                    <div class="form-outline datepicker w-100">
+                      <label class="form-label">DOB</label>
+
+                      <input type="date" class="form-control form-control-lg" name="dob" ngModel disabled/>
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4">
+  
+                    <h6 class="mb-2 pb-1">Gender: </h6>
+  
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="gen" 
+                        value="F" checked ngModel #gender="ngModel" required disabled/>
+                      <label class="form-check-label">Female</label>
+                    </div>
+  
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="gen" 
+                        value="M" ngModel required #gender="ngModel" disabled/>
+                      <label class="form-check-label">Male</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+    
+                      <div class="form-outline">
+                        <label class="form-label">Hospital</label>
+                        <br>
+                        <select class="select form-control-lg" name="hos" ngModel required #h="ngModel">
+                          <option *ngFor="let h of hosp" value="{{h.id}}">{{h.name}}</option>
+                        </select>
+                        <div>
+                          <small *ngIf="h.invalid && h.touched">Hospital name is required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+    
+                      <div class="form-outline">
+                        <label class="form-label">Admission Date</label> 
+                        <input type="Date" class="form-control form-control-lg" name="aDate" ngModel required #add="ngModel"/>
+                        <div>
+                          <small *ngIf="add.invalid && add.touched">Admission date is required</small>
+                        </div>
+                      </div>
+    
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+    
+                      <div class="form-outline">
+                        <label class="form-label">Medical Case</label>
+                        <input type="text" class="form-control form-control-lg" name="mCase" ngModel required #md="ngModel"/>
+                        <div>
+                          <small *ngIf="md.invalid && md.touched">Medical case is required</small>
+                        </div>
+                      </div>
+    
+                    </div>
+                    <div class="col-md-6 mb-4">
+    
+                      <div class="form-outline">
+                        <label class="form-label">Estimated Cost(USD)</label>  
+                        <input type="text" class="form-control form-control-lg" name="eCost" ngModel required #ecc="ngModel"/>
+                        <div>
+                          <small *ngIf="ecc.invalid && ecc.touched">Estimated cost is required</small>
+                        </div>
+                      </div>
+    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 d-flex align-items-center">
+    
+                      <div class="form-outline datepicker w-100">
+                        <label class="form-label">Treating Physician</label>
+                        <select class="select form-control-lg" name="phys" ngModel required #tp="ngModel">
+                            <option *ngFor="let s of phys" value="{{s.id}}">{{s.name}}</option>
+                        </select>                          
+                        <div>
+                          <small *ngIf="tp.invalid && tp.touched">Treating physician is required</small>
+                        </div>
+                      </div>
+    
+                    </div>
+                    <div class="col-md-6 mb-4">
+    
+                      <h6 class="mb-2 pb-1">Status: </h6>
+    
+                      <div class="form-check form-check-inline" *ngFor="let t of stat">
+                        <input class="form-check-input" type="radio" name="st"
+                          value="{{t.id}}" checked ngModel required #stt="ngModel"/>
+                        <label class="form-check-label">{{t.name}}</label>
+                        <div>
+                          <small *ngIf="stt.invalid && stt.touched">Status is required</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                <div class="row">
+                    <div class="form-group">
+                        <label>Remark</label>
+                        <textarea class="form-control" name="rem" rows="3" ngModel required #tx="ngModel"></textarea>
+                        <div>
+                          <small *ngIf="tx.invalid && tx.touched">Remark is required</small>
+                        </div>
+                      </div>
+                </div>
+  
+                <div class="mt-4 pt-2">
+                  <input class="btn btn-primary btn-lg" type="submit" value="Submit" [disabled]="!Form.valid"/>
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+<!-- <select>
+    <option *ngFor="let h of hosp" value="h.id">{{h.name}}</option>
+</select>
+
+<select>
+    <option *ngFor="let s of phys" value="s.id">{{s.name}}</option>
+</select>
+
+<select>
+    <option *ngFor="let t of stat" value="t.id">{{t.name}}</option>
+</select> -->
